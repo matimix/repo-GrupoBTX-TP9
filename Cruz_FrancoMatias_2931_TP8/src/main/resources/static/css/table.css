@@ -1,0 +1,41 @@
+/* hoja de estilos para tabla*/
+
+/* llamar al selector*/
+
+.contenedor-table{
+	background-color:#9999ff;
+	text-align: left;
+	width:100%;
+	margin-left: 3rem;
+	margin-right: 3rem;
+	
+	
+}
+
+/* conjunto, lista de selectores separados x coma*/
+
+
+th,td {
+	padding:3px;
+	
+	
+}
+
+thead{
+	background-color: #f2f2f2;
+	color: black;
+	
+}
+
+/*hijo proximo al elemento selector*/
+
+tr:nth-child(even){
+	background-color: #ff8080;
+	
+}
+
+tr:hover td{
+	
+	background-color: #ffe6e6;
+	color: red;
+}

@@ -1,0 +1,98 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Compras</title>
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+<header th:replace="/layouts/header :: header"></header>
+   
+   
+   <div align='center'>
+   //nuevo selector
+   <div class="conteiner">
+   <div class="contenedor-table">
+     
+        <div class="col-16">
+        
+        <a th:href="@{/compra/nuevo}">Nuevo compra</a>
+        </div>
+        <div class="row-1">
+        <h3>Listado Compras</h3>
+        </div>
+        
+        <div class="row">
+     
+        
+         <div class="col -sm-12 col -md-10">
+      <table class="table; background-size:44%" id="tblClientes" border="1" >
+       <thead>
+       
+          <tr>
+          <th>ID</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          </tr>
+       </thead>
+       
+          
+      <tbody>
+         <tr th:each="alu : ${compras}">
+           <td th:text="${alu.id}"></td>
+           <td th:text="${alu.cantidad}"></td>
+           <td th:text="${alu.total}"></td>
+           
+           
+         
+         </tr>
+       </tbody>
+   </table>
+   
+   
+   
+   </div>
+   <div class="col col-md-2">
+     <aside th:replace="/layouts/publicidad :: aside"></aside>
+   
+   </div>
+   
+   
+     
+    </div>
+    
+    
+    
+    
+    
+    </div> 
+    </div>
+   
+   </div>
+   
+<footer th:replace="/layouts/footer :: footer"></footer>
+ 
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>   
+   
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

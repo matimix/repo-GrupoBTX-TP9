@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="user-scalable=no, with=device-width, initial-scaled=1">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+<title>Nuevo Compra</title>
+</head>
+	<body>
+	
+			<header th:replace="/layouts/header :: header"></header>
+		<div class="card">
+			<div class="card-header text-center bg-dark text-white">
+      				ALTA DE UN PRODUCTO
+    		</div>
+    		</div>
+    		
+    		<div class="row col-sm-12 col-md">
+<div class="row col-sm-12 col-md">
+<header class="encabezado">
+<h1>FORMULARIO ALTA DE UN PRODUCTO</h1>
+</header>
+
+
+ <div class="contenedor">	
+			
+				<form th:action="@{/producto/guardar}" th:object="${producto}" method="post">
+				
+					<label for="codigo">Codigo del Producto</label>
+					<input type="number" id="codigo" th:field="*{codigo}" placeholder="Ingrese codigo"/>//recibe valores numericos
+					<br>
+					<label for="nombre">Nombre del Producto</label>
+					<input type="text" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre"/>
+					<br>
+					<label for="precio">Precio del Producto</label>
+					<input type="number" id="precio" th:field="*{precio}" placeholder="Ingrese precio"/>//recibe valores numericos
+					<br>
+					<label for="marca">Marca del Producto</label>
+					<input type="text" id="marca" th:field="*{marca}" placeholder="Ingrese marca"/>
+					<br>
+					<label for="stock">Stock del Producto</label>
+					<input type="number" id="stock" th:field="*{stock}"/>
+					<br>
+					
+					
+					
+					<div class ="form-group row">
+					<label for ="compras" class="col -sm-2 col-form-label">Compra</label>
+					<select id="compras" th:field="*{compras.id}">
+					   <option th:each="com : ${compras}"
+					    th:value="${com.nombre}"
+					    th:selected="false"/>
+					</select>
+				</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					<button type="submit" value="Guardar" class="btn btn-primary btn-sm">Guardar</button>
+					<button type="submit" value="Cancelar" class="btn btn-secondary btn-sm">Cancelar</button>
+					<br><br>
+				</form>
+			</div>
+			</div>
+			<div class="col  col-md-2">
+            <aside th:replace="/layouts/publicidad :: aside" style="width: 18rem; margin-left:2rem"></aside>
+           </div>	
+		</div>
+			<footer th:replace="/layouts/footer :: footer"></footer>
+	
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstarp/4.6.0-1/js/bootstrap.min.js}"></script>
+	</body>
+</html>

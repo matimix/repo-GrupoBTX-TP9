@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Empresas</title>
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/table.css}">
+</head>
+<body>
+<header th:replace="/layouts/header :: header"></header>
+   
+   
+   <div align='center'>
+   //nuevo selector
+   <div class="conteiner">
+   <div class="contenedor-table">
+     
+        <div class="col-16">
+        
+        <a th:href="@{/cliente/nuevo}">Nuevo cliente</a>
+        </div>
+        <div class="row-1">
+        <h3>Listado Clientes</h3>
+        </div>
+        
+        <div class="row">
+     
+        
+         <div class="col -sm-12 col -md-10">
+      <table class="table; background-size:44%" id="tblClientes" border="1" >
+       <thead>
+       
+          <tr>
+          <th>Tipo de Documento</th>
+          <th>Numero Documento</th>
+          <th>Nombre y Apellido</th>
+          <th>Email</th>
+          <th>Fecha Nac.</th>
+          <th>Fecha Ultima Compra</th>
+          <th>Edad</th>
+          <th>Telefono</th>
+          <th>T Ultima Compra</th>
+          <th>T Fecha Nac</th>
+          <th>T Cumpleaños</th>
+          <th>Acciones</th>
+          </tr>
+       </thead>
+       
+          
+      <tbody>
+         <tr th:each="alu : ${clientes}">
+           <td th:text="${alu.tipoDocumento}"></td>
+           <td th:text="${alu.dni}"></td>
+           <td th:text="${alu.cambioMay}"></td>
+           <td th:text="${alu.email}"></td>
+           <td th:text="${#temporals.format(alu.fechaNacimiento,'dd/MM/yyyy')}"></td>
+           <td th:text="${#temporals.format(alu.fechaUltimaCompra,'dd-MM-yyyy')}"></td>
+           <td th:text="${alu.getEdadd}"></td>
+           <td th:text="${alu.codigoAreaTelefono} + '-' + ${alu.nroTelefono}"></td>
+           <td th:text="${alu.getTUltimaCompra}"></td>
+           <td th:text="${alu.TiempoEnDias}"></td>
+           <td th:text="${alu.Thastacumple }"></td>
+           <td>
+             <a th:href="@{/cliente/editar/}+${alu.id}" class="btn btn-warning">Editar</a>
+             <a th:href="@{/cliente/eliminar/}+${alu.id}" class="btn btn-danger">Eliminar</a>
+             
+           </td>
+         
+         </tr>
+       </tbody>
+   </table>
+   
+   
+   
+   </div>
+   <div class="col col-md-2">
+     <aside th:replace="/layouts/publicidad :: aside"></aside>
+   
+   </div>
+   
+   
+     
+    </div>
+    
+    
+    
+    
+    
+    </div> 
+    </div>
+   
+   </div>
+   
+<footer th:replace="/layouts/footer :: footer"></footer>
+ 
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>   
+   
+   
+</body>
+</html>
