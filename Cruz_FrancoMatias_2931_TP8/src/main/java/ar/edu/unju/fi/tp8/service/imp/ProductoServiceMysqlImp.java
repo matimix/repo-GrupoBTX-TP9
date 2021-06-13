@@ -12,6 +12,8 @@ import ar.edu.unju.fi.tp8.servicee.IProductoService;
 
 
 
+
+
 @Service("productoServiceMySql")
 public class ProductoServiceMysqlImp implements IProductoService {
 
@@ -47,6 +49,12 @@ public class ProductoServiceMysqlImp implements IProductoService {
 	public Producto getProductoporCodigo(long codigo) {
 		Producto producto = productoRepository.findByCodigo(codigo);
 		return producto;
+	}
+
+	@Override
+	public void tablaProductos() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -5,11 +5,17 @@ import ar.edu.unju.fi.tp8.model.Producto;
 
 
 
+
+
 public interface IProductoService {
 
 	/**
 	 * aqui van solo los nombres de los metodos
 	 */
+	
+	
+	public void tablaProductos();
+	
 	public void addProducto(Producto producto);
 	
 	public Producto getUltimoProducto();

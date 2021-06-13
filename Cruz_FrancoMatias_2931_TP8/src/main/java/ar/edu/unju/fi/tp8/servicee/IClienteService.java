@@ -9,6 +9,8 @@ import ar.edu.unju.fi.tp8.model.Cliente;
 
 
 
+
+
 public interface IClienteService {
 
 	public void addCliente(Cliente cliente);
@@ -25,5 +27,16 @@ public interface IClienteService {
 	
 	public void eliminarCliente(Long id);
 	
+	
+	//nuevo para compra
+	public List<Cliente> buscarClientes(String nombre, int dni);
+	//nuevo
+	//guardar clientes asociados a proyecto
+	public List<Cliente> obtenerClientesEncontrados();
+	
+	
+	public void agregarClienteEncontrado(Cliente cliente);
+	
+	public void quitarClienteLista(Long id);
 	
 }
