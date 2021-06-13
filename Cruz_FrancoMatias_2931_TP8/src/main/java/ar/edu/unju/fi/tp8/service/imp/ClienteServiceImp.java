@@ -17,6 +17,8 @@ import ar.edu.unju.fi.tp8.servicee.IClienteService;
 
 
 
+
+
 @Service("clienteServiceSimple")
 public class ClienteServiceImp implements IClienteService {
 
@@ -76,6 +78,31 @@ public class ClienteServiceImp implements IClienteService {
 
 	@Override
 	public void eliminarCliente(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Cliente> buscarClientes(String nombreApellido, int dni) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//nuevo pero no se usa tanto
+	@Override
+	public List<Cliente> obtenerClientesEncontrados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void agregarClienteEncontrado(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void quitarClienteLista(Long id) {
 		// TODO Auto-generated method stub
 		
 	}
