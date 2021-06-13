@@ -4,7 +4,9 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,8 +15,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,21 +39,38 @@ public class Cliente {
 	
 	@Column(name="emp_tipoDocumento")
 	private String tipoDocumento;
+	
+	@Min(value=1,message="el valor para dni no debe ser inferior a 8")
 	@Column(name="emp_dni")
 	private int dni;
-	@Column(name="emp_nombreApellido",length = 100)
+	
+	
+	@Size(min=3, max=150,message="El nombre y apellido debe tener como minimo 3 caracter y maximo 150")
+	@Column(name="emp_nombreApellido",length = 150)
 	private String nombreApellido;
+	
+	
+	@Email(message = "debe ingresar un e-mail valido")
 	@Column(name="emp_email")
 	private String email;
+	
+	@Min(value=9,message="la contraseña debe tener al menos 9 caracteres")
 	@Column(name="emp_password")
-	
-	
 	private String password;
+	@NotNull(message = "Debe ingresar una fecha valida")
+	@Column(name="emp_fechaNac")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
+	@Column(name="emp_edad")
+	
+	
 	private int edad;
+	@Max(value = 9999, message = "El codigo de area debe tener 3 o 4 digitos")
+	@Column(name="emp_codAreaTelefono")
 	private int codigoAreaTelefono;
+	@Column(name="emp_nroTelefono")
 	private int nroTelefono;
+	@Column(name="emp_fechaUltimaCompra")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaUltimaCompra;
 	
@@ -57,17 +83,25 @@ public class Cliente {
 	
 	
 	
-	
+	@Valid
 	@Autowired
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cue_id")
 	private Cuenta cuenta;
 	
-	
+	@Valid
 	@Autowired
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "prod_codigo")
 	private Producto producto;
+	
+	//este no va era de la practica
+	
+	
+	@ManyToMany(mappedBy="clientes")
+	private List <Beneficio> beneficios= new ArrayList<Beneficio>();
+	
+	
 	
 	
 	
@@ -82,54 +116,6 @@ public class Cliente {
 	
 	
 	
-	
-	
-
-
-
-
-
-
-
-
-
-	public Cliente(long id, String tipoDocumento, int dni, String nombreApellido, String email, String password,
-			LocalDate fechaNacimiento, int edad, int codigoAreaTelefono, int nroTelefono, LocalDate fechaUltimaCompra,
-			Cuenta cuenta, Producto producto) {
-		super();
-		this.id = id;
-		this.tipoDocumento = tipoDocumento;
-		this.dni = dni;
-		this.nombreApellido = nombreApellido;
-		this.email = email;
-		this.password = password;
-		this.fechaNacimiento = fechaNacimiento;
-		this.edad = edad;
-		this.codigoAreaTelefono = codigoAreaTelefono;
-		this.nroTelefono = nroTelefono;
-		this.fechaUltimaCompra = fechaUltimaCompra;
-		this.cuenta = cuenta;
-		this.producto = producto;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
@@ -370,9 +356,87 @@ Calendar hoy = Calendar.getInstance();
 				+ nombreApellido + ", email=" + email + ", password=" + password + ", fechaNacimiento="
 				+ fechaNacimiento + ", edad=" + edad + ", codigoAreaTelefono=" + codigoAreaTelefono + ", nroTelefono="
 				+ nroTelefono + ", fechaUltimaCompra=" + fechaUltimaCompra + ", cuenta=" + cuenta + ", producto="
-				+ producto + "]";
+				+ producto + ", beneficios=" + beneficios + "]";
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public List<Beneficio> getBeneficios() {
+		return beneficios;
+	}
+
+
+
+
+
+
+
+
+	public void setBeneficios(List<Beneficio> beneficios) {
+		this.beneficios = beneficios;
+	}
+
+
+
+
+
+
+
+
+	public Cliente(long id, String tipoDocumento,
+			@Min(value = 1, message = "el valor para dni no debe ser inferior a 8") int dni,
+			@Size(min = 3, max = 150, message = "El nombre y apellido debe tener como minimo 3 caracter y maximo 150") String nombreApellido,
+			@Email(message = "debe ingresar un e-mail valido") String email,
+			@Min(value = 9, message = "la contraseña debe tener al menos 9 caracteres") String password,
+			@NotNull(message = "Debe ingresar una fecha valida") LocalDate fechaNacimiento, int edad,
+			@Max(value = 9999, message = "El codigo de area debe tener 3 o 4 digitos") int codigoAreaTelefono,
+			int nroTelefono, LocalDate fechaUltimaCompra, @Valid Cuenta cuenta, @Valid Producto producto,
+			List<Beneficio> beneficios) {
+		super();
+		this.id = id;
+		this.tipoDocumento = tipoDocumento;
+		this.dni = dni;
+		this.nombreApellido = nombreApellido;
+		this.email = email;
+		this.password = password;
+		this.fechaNacimiento = fechaNacimiento;
+		this.edad = edad;
+		this.codigoAreaTelefono = codigoAreaTelefono;
+		this.nroTelefono = nroTelefono;
+		this.fechaUltimaCompra = fechaUltimaCompra;
+		this.cuenta = cuenta;
+		this.producto = producto;
+		this.beneficios = beneficios;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	
 	
 	
