@@ -11,6 +11,8 @@ import ar.edu.unju.fi.tp8.servicee.ICompraService;
 import ar.edu.unju.fi.tp8.util.TablaCompra;
 
 
+
+
 /**
  * aqui va el cuerpo de los metodos
  * @author Familia
@@ -20,23 +22,37 @@ import ar.edu.unju.fi.tp8.util.TablaCompra;
 @Service("compraServiceSimple")
 public class CompraServiceImp implements ICompraService {
 
+	
+	@Autowired
+	Compra compra;
+	
+	
+	
 	List<Compra> compras = TablaCompra.compras;
 	
 	@Override
-	public void guardarCompra(Compra compra) {
-		compras.add(compra);
+	public void addCompra(Compra compra) {
+		this.compras.add(compra);
 		
 	}
 
 	@Override
 	public List<Compra> getAllCompras() {
-		return compras;
+		return this.compras;
+	}
+
+	
+
+	@Override
+	public Compra getCompra() {
+		this.compra.setId(11);
+		return this.compra;
 	}
 
 	@Override
-	public void addCompra(Compra compra) {
+	public List<Compra> buscarCompras(String nombre, double total) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	
 

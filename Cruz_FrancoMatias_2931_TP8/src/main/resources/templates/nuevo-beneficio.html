@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Empresas</title>
+
+<meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+
+
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+
+<header th:replace="/layouts/header :: header"></header>
+
+<div class="container"> 
+
+
+<div class="row col-sm-12 col-md">
+<div class="row col-sm-12 col-md">
+<header class="encabezado">
+<h1>FORMULARIO BENEFICIO</h1>
+</header>
+
+
+ <div class="contenedor">
+ 
+     <section id="instructivo">
+     
+     <p>
+     Registrese
+     
+     </p>
+     </section>
+     
+     <div class="col-md -8 justify-content-left">
+        <form th:action="@{/cliente/buscar}" th:object="${cliente}" th:method="GET">
+        
+           <div class="from-group row">
+                   <label for="dni" class="col -sm-3 col-form-label">dni a buscar</label>
+                   <div class="col-sm-5">
+                         <input type="number" class="form-control" id="dni" th:field="*{dni}">
+                   </div>
+           <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+          </div>
+           
+           
+           </div>
+             
+          
+          <div class="form-text text-danger col-sm-10 offset-2" th:if="${mensajeError}" th:text="${mensajeError}"></div> 
+        </form>
+           
+        </div>
+     
+     <!-- tabla con clientes  seleccionados para el beneficio -->
+     
+           <div class="col -sm-12 col -md-10">
+      <table class="table; background-size:44%" id="tblClientes" border="1" >
+       <thead>
+       
+          <tr>
+          <th>Tipo de Documento</th>
+          <th>Numero Documento</th>
+          <th>Nombre y Apellido</th>
+          <th>Email</th>
+          
+          </tr>
+       </thead>
+       
+          
+      <tbody>
+         <tr th:each="alu : ${clientesEncontrados}">
+           <td th:text="${alu.tipoDocumento}"></td>
+           <td th:text="${alu.dni}"></td>
+           <td th:text="${alu.cambioMay}"></td>
+           
+           
+           <td>
+             <a th:href="@{/cliente/quitaropcion/}+${alu.id}" class="btn btn-danger">Quitar</a>
+             
+             
+           </td>
+         
+         </tr>
+       </tbody>
+   </table>
+   
+   
+   
+   </div>
+     
+     
+     
+     
+     
+      
+      <form th:action="@{/beneficio/guardar}" th:method="post" th:object="${beneficio}">
+      
+      
+      
+      
+    <div class="form-group row">
+    <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" placeholder="la descripcion" >
+    </div>
+     <!--  </div>  <div class="form-text text-danger col -sm-10 offset-2" th:if="${#fields.hasErrors('nombreApellido')}" th:errors="*{nombreApellido}"
+     ></div>  -->
+  </div>
+    <br><br>
+    <br><br>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    
+    </div>
+    </div>
+    <div class="col col-md-2">
+     <aside th:replace="/layouts/publicidad :: aside"></aside>
+   
+   </div>
+   </div>
+   <footer th:replace="/layouts/footer :: footer"></footer>
+   <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+   <script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1-lts/popper.min.js}"></script>
+   <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+ 
+ </div>
+
+
+</body>
+</html>

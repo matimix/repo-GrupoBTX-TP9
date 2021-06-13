@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,9 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long codigo;
+	
+	@NotEmpty(message="el campoppppppppp")
+	@NotNull(message="no puede ser nulo")
 	@Column(name="prod_nombre")
 	private String nombre;
 	@Column(name="prod_precio")
@@ -32,7 +37,7 @@ public class Producto {
 	
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name="com_id")
-	private Compra compra;
+   private Compra compra;
 
 public Producto() {
 		super();
@@ -40,14 +45,28 @@ public Producto() {
 
 
 
-public Producto(int codigo, String nombre, double precio, String marca, int stock) {
-		super();
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.precio = precio;
-		this.marca = marca;
-		this.stock = stock;
-	}
+
+
+
+
+
+
+
+
+public Producto(long codigo,String nombre, double precio,
+		String marca, int stock, Compra compra) {
+	super();
+	this.codigo = codigo;
+	this.nombre = nombre;
+	this.precio = precio;
+	this.marca = marca;
+	this.stock = stock;
+	this.compra = compra;
+}
+
+
+
+
 
 
 
@@ -156,11 +175,23 @@ public void setCompra(Compra compra) {
 
 
 
+
+
+
+
+
+
+
+
 @Override
 public String toString() {
 	return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", marca=" + marca + ", stock="
-			+ stock + "]";
+			+ stock + ", compra=" + compra + "]";
 }
+
+
+
+
 	
 
 

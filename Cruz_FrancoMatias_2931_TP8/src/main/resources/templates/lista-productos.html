@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -16,26 +15,9 @@
    
    <div class="conteiner">
       
-        <div class="col-md -8 justify-content-left">
-        <form th:action="@{/compra/busqueda}" th:object="${compra}" th:method="GET">
+        <div class="col-12">
+           <a th:href="@{/compra/nuevo}">Nuevo compra</a>
         
-          <div class="col-md-6 mb-3">
-                   <label for="nombre" class="col -sm-3 col-form-label">Nombre</label>
-                   <div class="col-sm-5">
-                         <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
-                   </div>
-           </div>   
-        
-           <div class="col-md-6 mb-3">
-                   <label for="total" class="col -sm-3 col-form-label">Monto</label>
-                   <div class="col-sm-5">
-                         <input type="number" class="form-control" id="total" th:field="*{total}">
-                   </div>
-           </div>   
-        
-          <button type="submit" class="btn btn-success">Buscar</button>
-        </form>
-           
         </div>
         
         <div class="row">
@@ -50,20 +32,18 @@
                     <table class="table table-haver table-dark">
        
            <tr>
-          <th>ID</th>
-          <th>Nombre del Producto</th>
-          <th>Cantidad</th>
-          <th>Total</th>
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Marca</th>
           </tr>
        
        
           
       <tbody>
-         <tr th:each="alu : ${compras}">
-           <td th:text="${alu.id}"></td>
-           <td th:text="${alu.producto.nombre}"></td>
-           <td th:text="${alu.cantidad}"></td>
-           <td th:text="${alu.total}"></td>
+         <tr th:each="prod : ${productos}">
+           <td th:text="${prod.codigo}"></td>
+           <td th:text="${prod.nombre}"></td>
+           <td th:text="${prod.marca}"></td>
            
            
          
@@ -91,13 +71,3 @@
    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

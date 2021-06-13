@@ -14,7 +14,55 @@
    
    
    <div align='center'>
-   //nuevo selector
+   
+   
+      <div class="col-md -8 justify-content-left">
+        <form th:action="@{/cliente/buscar}" th:object="${cliente}" th:method="GET">
+        
+           <div class="from-group row">
+                   <label for="dni" class="col -sm-3 col-form-label">dni a buscar</label>
+                   <div class="col-sm-5">
+                         <input type="number" class="form-control" id="dni" th:field="*{dni}">
+                   </div>
+           <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+          </div>
+           
+           
+           </div>
+             
+          
+          <div class="form-text text-danger col-sm-10 offset-2" th:if="${mensajeError}" th:text="${mensajeError}"></div> 
+        </form>
+           
+        </div>
+        
+     
+      
+      
+      <form th:action="@{/beneficio/guardar}" th:method="post" th:object="${beneficio}">
+      
+    <div class="form-group row">
+    <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" placeholder="la descripcion" >
+    </div>
+     <!--  </div>  <div class="form-text text-danger col -sm-10 offset-2" th:if="${#fields.hasErrors('nombreApellido')}" th:errors="*{nombreApellido}"
+     ></div>  -->
+  </div>
+    <button type="submit" class="btn btn-primary">Guardar Descripcion</button>
+    
+   </form>   
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
    <div class="conteiner">
    <div class="contenedor-table">
      
@@ -63,6 +111,8 @@
            <td th:text="${alu.getTUltimaCompra}"></td>
            <td th:text="${alu.TiempoEnDias}"></td>
            <td th:text="${alu.Thastacumple }"></td>
+           
+           
            <td>
              <a th:href="@{/cliente/editar/}+${alu.id}" class="btn btn-warning">Editar</a>
              <a th:href="@{/cliente/eliminar/}+${alu.id}" class="btn btn-danger">Eliminar</a>
@@ -72,10 +122,24 @@
          </tr>
        </tbody>
    </table>
-   
+    
+      
+      
+      
+      
+    
    
    
    </div>
+   
+   
+  
+   
+   
+   
+   
+   
+   
    <div class="col col-md-2">
      <aside th:replace="/layouts/publicidad :: aside"></aside>
    

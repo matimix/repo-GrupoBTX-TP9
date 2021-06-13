@@ -26,25 +26,26 @@
  <div class="contenedor">		
 			
 				<form th:action="@{/compra/guardar}" th:object="${compra}" method="post">
-				<label for="id">Id de la Compra</label>
-					<input type="number" id="id" th:field="*{id}" placeholder="Ingrese Id de la compra"/>
-					<br>
-					
-					
+				<input type="hidden" th:field="*{id}"/> 
 				
-					
-					
-					<br>
-					<label for="cantidad">Cantidad de la compra</label>
+					<div class="col-md-6 mb-3">
+					      <label for="producto">Seleccionar Producto</label>
+					      <select th:field="*{producto.codigo}" id="producto" class="form-control">
+							  <option th:each="prod : ${productos}" th:value="${prod.codigo}" th:text="${prod.nombre}"></option>
+							</select>
+							
+					    </div>
+					<label for="cantidad">Cantidad del Producto</label>
 					<input type="number" id="cantidad" th:field="*{cantidad}" placeholder="Ingrese la cantidad"/>
-					<br>
-					<label for="total">Total</label>
-					<input type="number" id="total" th:field="*{total}"/>
-					<br>
 					<button type="submit" value="Guardar" class="btn btn-primary btn-sm">Comprar</button>
-					<br>
+					<br><br>
 				</form>
-			</div>
+				
+				
+				
+				
+				
+</div>
 			
 			</div>
 			<div class="col  col-md-2">
