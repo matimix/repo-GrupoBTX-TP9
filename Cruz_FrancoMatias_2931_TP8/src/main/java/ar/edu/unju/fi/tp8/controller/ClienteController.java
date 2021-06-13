@@ -161,7 +161,7 @@ public String buscarClienteporDni(@RequestParam(name="dni") int dni,Model model,
 
 @GetMapping("/cliente/quitaropcion/{id}")
   public ModelAndView quitarOpcionListaClientes(@PathVariable(name="id") Long id) {
-	ModelAndView modelView = new ModelAndView("nuevo-proyecto");
+	ModelAndView modelView = new ModelAndView("lista-clientes");
 	clienteService.quitarClienteLista(id);
 	
 	 modelView.addObject("cliente",cliente);
